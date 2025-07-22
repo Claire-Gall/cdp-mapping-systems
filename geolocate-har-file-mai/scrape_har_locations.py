@@ -51,10 +51,13 @@ def build_map(
     ip_locations: List[Tuple[str, float, float, str]], output_path: str
 ) -> None:
     """Generate Folium map from list of IP + lat/lon tuples."""
+    print('beginning')
     m = folium.Map(location=[20, 0], zoom_start=2)
     cluster = MarkerCluster().add_to(m)
+    print('here')
     for ip, lat, lon, url in ip_locations:
         if lat and lon:
+            print('lat and long loop')
             folium.Marker(
                 location=[lat, lon],
                 popup=f"IP: {ip}<br>URL: {url}",
