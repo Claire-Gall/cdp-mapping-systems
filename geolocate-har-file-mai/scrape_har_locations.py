@@ -30,7 +30,6 @@ def load_ips_from_har(path: str) -> List[str]:
             ips.add((ip, url))
     return list(ips)
 
-
 def geolocate_ip(ip_item: Tuple[str, str]) -> Tuple[str, float, float, str]:
     """Geolocate IP using ipinfo.io API. Returns (ip, lat, lon, url)."""
     ip, url = ip_item
@@ -48,7 +47,8 @@ def geolocate_ip(ip_item: Tuple[str, str]) -> Tuple[str, float, float, str]:
 
 
 def build_map(
-    ip_locations: List[Tuple[str, float, float, str]], output_path: str
+    try:
+        ip_locations: List[Tuple[str, float, float, str]], output_path: str
 ) -> None:
     """Generate Folium map from list of IP + lat/lon tuples."""
     print('beginning')
@@ -63,6 +63,9 @@ def build_map(
                 popup=f"IP: {ip}<br>URL: {url}",
                 icon=folium.Icon(color="blue", icon="info-sign"),
             ).add_to(cluster)
+    except:
+        print('an exception occurred')
+
 
     # additionally save data as a GeoJSON file
     geojson_data = {
@@ -88,8 +91,8 @@ def build_map(
     with open("outputs/ip_locations.geojson", "w", encoding="utf-8") as f:
         json.dump(geojson_data, f)
     print("GeoJSON saved to: outputs/ip_locations.geojson")
-
-
+    
+    print("GeoJSON saved to: outputs/ip_locations.geojson")
 # === RUN ===
 
 if __name__ == "__main__":
