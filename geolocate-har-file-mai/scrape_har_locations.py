@@ -4,6 +4,7 @@ import folium
 from folium.plugins import MarkerCluster
 from pathlib import Path
 from typing import List, Tuple
+import time
 
 # === CONFIGURATION ===
 HAR_FILE = "inputs/oxman.com.har"  # Replace with your HAR filename
@@ -33,7 +34,7 @@ def load_ips_from_har(path: str) -> List[str]:
 def geolocate_ip(ip_item: Tuple[str, str]) -> Tuple[str, float, float, str]:
     """Geolocate IP using ipinfo.io API. Returns (ip, lat, lon, url)."""
     ip, url = ip_item
-
+    time.sleep(5)
     try:
         resp = requests.get(f"https://ipinfo.io/{ip}/json")
         data = resp.json()
@@ -47,7 +48,6 @@ def geolocate_ip(ip_item: Tuple[str, str]) -> Tuple[str, float, float, str]:
 
 
 def build_map(
-    try:
         ip_locations: List[Tuple[str, float, float, str]], output_path: str
 ) -> None:
     """Generate Folium map from list of IP + lat/lon tuples."""
@@ -63,9 +63,6 @@ def build_map(
                 popup=f"IP: {ip}<br>URL: {url}",
                 icon=folium.Icon(color="blue", icon="info-sign"),
             ).add_to(cluster)
-    except:
-        print('an exception occurred')
-
 
     # additionally save data as a GeoJSON file
     geojson_data = {
