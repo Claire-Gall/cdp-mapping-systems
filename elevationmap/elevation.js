@@ -16,13 +16,28 @@ map.on('load', () => {
         type: 'geojson',
         data: 'output_path.geojson' // make sure this file exists and is valid
     });
-
+})
     map.addLayer({
         id: 'elevation-layer',
         type: 'fill',
         source: 'elevation-source',
         paint: {
             'fill-color': 'yellow',
+            'fill-opacity': 0.5
+        }
+    });
+
+    map.on('load', () => {
+    map.addSource('slope-source', {
+        type: 'geojson',
+        data: '' // make sure this file exists and is valid
+    });
+    map.addLayer({
+        id: 'slope-layer',
+        type: 'fill',
+        source: 'slope-source',
+        paint: {
+            'fill-color': 'light blue',
             'fill-opacity': 0.5
         }
     });
