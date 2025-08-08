@@ -1,86 +1,27 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="utf-8" />
-    <title>Coastal Elevation: Isolating Slope Changes for Fog Capture</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8" />
+  <title>Elevation for Fog Collector Placement</title>
+  <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+  <script src="https://unpkg.com/maplibre-gl@^5.6.1/dist/maplibre-gl.js"></script>
+  <link href="https://unpkg.com/maplibre-gl@^5.6.1/dist/maplibre-gl.css" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
 
-    <link
-      rel="icon"
-      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><text y='52' font-size='52'>𖣔</text></svg>"
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://unpkg.com/deck.gl@^9.0.0-beta.5/dist.min.js"></script>
-    <script src="https://unpkg.com/maplibre-gl@^3.0.0/dist/maplibre-gl.js"></script>
-    <link
-      href="https://unpkg.com/maplibre-gl@^3.0.0/dist/maplibre-gl.css"
-      rel="stylesheet"
-    />
-
+    #map {
+      width: 100%;
+      height: 100vh;
+    }
+  </style>
 </head>
 
 <body>
-      <body>
-    <div class="main-layout">
-      <div class="map-container">
-        <div id="map"></div>
-      </div>
-      <div class="sidebar">
-        <h2>Chunk of Northern California Coast-Slope and Elevation for Fog Catcher Locating</h2>
-        <!-- <h3>Bay Area, California</h3> -->
-        <p>Map View:</p>
-        <div class="toggle-group" id="modeToggle">
-          <div id="spatialToggle" class="toggle-btn active"></div>
-          <div id="semanticToggle" class="toggle-btn"></div>
-        </div>
-        <div class="layer-controls">
-          <label
-            ><input type="checkbox" id="showBlocks" checked /> Show
-            Blocks</label
-          >
-          <label
-            ><input type="checkbox" id="showBuildings" checked /> Show
-            Buildings</label
-          >
-          <label
-            ><input type="checkbox" id="showNodes" checked /> Show Nodes</label
-          >
-          <label
-            ><input type="checkbox" id="showEdges" checked /> Show Edges</label
-          >
-          <label
-            ><input type="checkbox" id="invertLayers" /> Invert Layers</label
-          >
-        </div>
-        <div class="slider-group">
-          <label for="layerSpacingSlider" style="margin-bottom: 8px"
-            >Layer Spacing</label
-          >
-          <input
-            type="range"
-            id="layerSpacingSlider"
-            min="600"
-            max="1500"
-            value="1000"
-          />
-        </div>
-        <p>
-            I am looking for how slope changes relative to topographical elevation changes can help inform fog catcher placement. 
-          <span class="small-brackets"
-            >[building density, height, lot area, year built, etc]</span
-          >
-          and slopes
-          <span class="small-brackets">[place types, names, reviews, etc]</span
-        
-        </p>
-      </div>
-    <div id="map" style="height: 100vh;"></div>
-    <script src="slope.js"></script>
+  <div id="map"></div>
+  <script src="elevation.js"></script>
 </body>
-
 </html>

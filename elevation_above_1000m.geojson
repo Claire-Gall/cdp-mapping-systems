@@ -1,0 +1,8 @@
+{
+"type": "FeatureCollection",
+"name": "elevation_above_1000m",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:EPSG::6318" } },
+"features": [
+
+]
+}
